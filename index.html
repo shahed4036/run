@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brain Taskers - Login</title>
+    <style>
+        /* Basic reset and styling for body */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        /* Container for the form and worker information */
+        .container {
+            display: flex;
+            width: 80%;
+            max-width: 900px;
+            background-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        /* Styling for the login section */
+        .login-section {
+            flex: 1;
+            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.7);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Styling for the heading */
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 32px;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Styling for input fields */
+        input[type="text"],
+        input[type="password"] {
+            padding: 12px;
+            border: none;
+            border-radius: 30px;
+            width: 280px;
+            font-size: 16px;
+            margin-bottom: 15px;
+            outline: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Styling for the login button */
+        button {
+            padding: 12px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            outline: none;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            background-color: #003f7f;
+            transform: translateY(0);
+        }
+
+        /* Worker information section */
+        .info-section {
+            flex: 1;
+            background-color: rgba(255, 255, 255, 0.15);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            font-size: 18px;
+        }
+
+        .info-section h2 {
+            margin-bottom: 20px;
+            font-size: 28px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .info-section p {
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        /* Smooth fade-in animation for page load */
+        body {
+            animation: fadeIn 1.2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Login Section -->
+        <div class="login-section">
+            <h1>Brain Taskers Login</h1>
+            <input type="text" id="username" placeholder="Username" />
+            <input type="password" id="password" placeholder="Password" />
+            <button id="login-btn">Login</button>
+        </div>
+
+        <!-- Information Section -->
+        <div class="info-section">
+            <h2>About the Worker</h2>
+            <p><strong>Name:</strong> Shahed</p>
+            <p><strong>Age:</strong> 25</p>
+            <p><strong>Role:</strong> Brain Tasker's Worker</p>
+            <p>Welcome to Brain Taskers. Please log in to continue your tasks.</p>
+        </div>
+    </div>
+
+    <script>
+        // Hardcoded credentials
+        const username = 'shahed';
+        const password = 'shahed';
+
+        // Login button click event
+        document.getElementById('login-btn').addEventListener('click', function () {
+            const inputUsername = document.getElementById('username').value;
+            const inputPassword = document.getElementById('password').value;
+
+            // Validate credentials
+            if (inputUsername === username && inputPassword === password) {
+                // Redirect to image processing page
+                window.location.href = 'image_processing.html'; // Change to the correct filename
+            } else {
+                alert('Invalid username or password'); // Alert for invalid credentials
+            }
+        });
+    </script>
+</body>
+
+</html>

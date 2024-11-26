@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Page</title>
+    <link rel="stylesheet" href="research-styles.css">
+</head>
+<body>
+    <div class="research-container">
+        <h2>Research Dashboard</h2>
+        <p class="description">Welcome! You can submit feedback, upload images, and connect your MetaMask wallet here.</p>
+
+        <!-- Feedback Section -->
+        <div class="section">
+            <h3>Feedback</h3>
+            <textarea id="feedback" placeholder="Enter your feedback..."></textarea>
+            <button onclick="submitFeedback()">Submit Feedback</button>
+        </div>
+
+        <!-- Image Upload Section -->
+        <div class="section">
+            <h3>Upload Image</h3>
+            <input type="file" id="uploadImage" accept="image/*">
+            <button onclick="uploadImage()">Upload Image</button>
+        </div>
+
+        <!-- MetaMask Wallet Connection -->
+        <div class="section">
+            <h3>Connect to MetaMask</h3>
+            <button onclick="connectMetaMask()">Connect Wallet</button>
+            <p id="walletAddress">Wallet Address: Not connected</p>
+        </div>
+
+        <!-- Text Submission Section -->
+        <div class="section">
+            <h3>Text Submission</h3>
+            <textarea id="textSubmit" placeholder="Write something..."></textarea>
+            <button onclick="submitText()">Submit Text</button>
+            <p id="confirmationMessage" style="color: green; display: none;"></p> <!-- Confirmation message -->
+        </div>
+    </div>
+
+    <script>
+        async function connectMetaMask() {
+            if (window.ethereum) {
+                try {
+                    const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+                    document.getElementById('walletAddress').innerText = `Wallet Address: ${accounts[0]}`;
+                } catch (error) {
+                    console.error("MetaMask connection error:", error);
+                }
+            } else {
+                alert("MetaMask not detected. Please install it!");
+            }
+        }
+
+        function submitFeedback() {
+            const feedback = document.getElementById("feedback").value;
+            alert("Feedback submitted: " + feedback);
+            document.getElementById("feedback").value = "";
+        }
+
+        function uploadImage() {
+            const fileInput = document.getElementById("uploadImage");
+            if (fileInput.files.length > 0) {
+                alert("Image uploaded: " + fileInput.files[0].name);
+                fileInput.value = "";
+            } else {
+                alert("Please select an image to upload.");
+            }
+        }
+
+        function submitText() {
+            const text = document.getElementById("textSubmit").value;
+
+            if (text) {
+                localStorage.setItem("submittedText", text); // Save to local storage
+                document.getElementById("textSubmit").value = ""; // Clear the text area
+                document.getElementById("confirmationMessage").innerText = "Text submitted successfully!"; // Show confirmation
+                document.getElementById("confirmationMessage").style.display = "block"; // Display confirmation
+            } else {
+                alert("Please enter some text before submitting."); // Alert if no text is entered
+            }
+        }
+    </script>
+</body>
+<html lang="en">
+    <button id="triggerButton">Confirm</button>
+
+    <script>
+    document.getElementById('triggerButton').addEventListener('click', function () {
+        // Set trigger in localStorage when button is clicked
+        localStorage.setItem('pageBTrigger', 'true');
+        alert('Button on Page B can now be accessed!');
+    });
+    </script>
+</html>

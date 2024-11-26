@@ -1,0 +1,137 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #4b6cb7, #182848);
+    color: #fff;
+}
+
+/* Research Container Styling */
+.research-container {
+    width: 90%;
+    max-width: 800px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    color: #ffffff;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.research-container:hover {
+    transform: scale(1.02);
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.description {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    color: #dcdcdc;
+}
+
+/* Section Styling */
+.section {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Input and Button Styling */
+textarea,
+input[type="file"] {
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+textarea::placeholder {
+    color: #dcdcdc;
+}
+
+button {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: #00b894;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background-color: #019875;
+}
+
+/* Display Text Styling */
+.display-text {
+    margin-top: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    border-radius: 8px;
+    color: #dcdcdc;
+}
+
+.display-text #displayText {
+    font-size: 1rem;
+    color: #fff;
+}
+#triggerButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(145deg, #4CAF50, #3e8e41); /* Gradient background */
+    color: white;
+    border: none;
+    border-radius: 12px; /* Soft rounded corners */
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Soft shadow for depth */
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Smooth transitions */
+}
+
+/* Hover effect */
+#triggerButton:hover {
+    background: linear-gradient(145deg, #3e8e41, #4CAF50); /* Reverse gradient on hover */
+    transform: translateY(-3px); /* Lift effect */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow on hover */
+}
+
+/* Active (click) effect */
+#triggerButton:active {
+    transform: translateY(1px); /* Slight push down */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Lighter shadow on active */
+}
+
+
