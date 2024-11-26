@@ -386,7 +386,7 @@
   function checkTrigger() {
 
   
-      //if (localStorage.getItem('pageBTrigger') === 'true') {
+      if (localStorage.getItem('pageBTrigger') === 'true') {
           // Enable the button if the trigger is set
           const sendButton = document.getElementById('sendButton');
           sendButton.disabled = false;
@@ -401,7 +401,7 @@
               // Disable the button again after clicking
               sendButton.disabled = true;
           });
-     // }
+      }
   }
   
   // Run the check when the page loads
