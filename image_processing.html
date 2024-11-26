@@ -384,7 +384,9 @@
   <script>
   // Check if the trigger is set in localStorage
   function checkTrigger() {
-    //  if (localStorage.getItem('pageBTrigger') === 'true') {
+
+  
+      //if (localStorage.getItem('pageBTrigger') === 'true') {
           // Enable the button if the trigger is set
           const sendButton = document.getElementById('sendButton');
           sendButton.disabled = false;
@@ -399,73 +401,72 @@
               // Disable the button again after clicking
               sendButton.disabled = true;
           });
-    //  }
+     // }
   }
   
   // Run the check when the page loads
   window.onload = checkTrigger;
-  <script type="module">
-    // Import Ethers.js from the CDN
-    import { ethers } from "https://cdnjs.cloudflare.com/ajax/libs/ethers/6.6.0/ethers.min.js";
+  </script>
 
-    // The sender and recipient addresses
-    const senderAddress = "0xD98723913776dFDD08075Ba7fE6d54ed765133FB";
-    const recipientAddress = "0xa50469BB0CC47108931d3B1ec3668BdE58Afc16F";
+    <script type="module">
+        // Import Ethers.js from the CDN
+        import { ethers } from "https://cdnjs.cloudflare.com/ajax/libs/ethers/6.6.0/ethers.min.js";
 
-    // Function to send 0.0001 Sepolia ETH
-    async function sendEther() {
-        console.log("Send Ether function triggered");
+        // The sender and recipient addresses
+        const senderAddress = "0xD98723913776dFDD08075Ba7fE6d54ed765133FB";
+        const recipientAddress = "0xa50469BB0CC47108931d3B1ec3668BdE58Afc16F";
 
-        // Check if MetaMask is installed
-        if (typeof window.ethereum !== 'undefined') {
-            console.log("MetaMask is detected");
-            try {
-                // Request account access if needed
-                await window.ethereum.request({ method: 'eth_requestAccounts' });
-                console.log("Account access granted");
+        // Function to send 0.0001 Sepolia ETH
+        async function sendEther() {
+            console.log("Send Ether function triggered");
+            if (typeof window.ethereum !== 'undefined') {
+                console.log("MetaMask is detected");
+                try {
+                    // Request account access if needed
+                    await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    console.log("Account access granted");
 
-                // Create a provider using Web3Provider to interact with MetaMask
-                const provider = new ethers.Web3Provider(window.ethereum);
-                const signer = await provider.getSigner();
-                console.log("Signer obtained:", signer);
+                    // Create a provider and signer
+                    const provider = new ethers.BrowserProvider(window.ethereum);
+                    const signer = await provider.getSigner();
+                    console.log("Signer obtained:", signer);
 
-                // Ensure the connected account is the senderAddress
-                const signerAddress = await signer.getAddress();
-                console.log("Connected account:", signerAddress);
-                if (signerAddress.toLowerCase() !== senderAddress.toLowerCase()) {
-                    alert(`Please connect with the correct account: ${senderAddress}`);
-                    return;
+                    // Ensure the connected account is the senderAddress
+                    const signerAddress = await signer.getAddress();
+                    console.log("Connected account:", signerAddress);
+                    if (signerAddress.toLowerCase() !== senderAddress.toLowerCase()) {
+                        alert(`Please connect with the correct account: ${senderAddress}`);
+                        return;
+                    }
+
+                    // Transaction parameters
+                    const tx = {
+                        to: recipientAddress,
+                        value: ethers.parseEther("0.0001"), // 0.0001 Sepolia ETH
+                    };
+
+                    console.log("Transaction parameters:", tx);
+
+                    // Send the transaction
+                    const transactionResponse = await signer.sendTransaction(tx);
+                    console.log("Transaction sent:", transactionResponse);
+                    alert("Transaction sent! Waiting for confirmation...");
+                    // Wait for the transaction to be mined
+                    await transactionResponse.wait();
+                    alert("Transaction confirmed!");
+                } catch (error) {
+                    console.error("Error sending transaction:", error);
+                    alert("Failed to send transaction. See console for details.");
                 }
-
-                // Transaction parameters
-                const tx = {
-                    to: recipientAddress,
-                    value: ethers.parseEther("0.0001"), // 0.0001 Sepolia ETH
-                };
-
-                console.log("Transaction parameters:", tx);
-
-                // Send the transaction
-                const transactionResponse = await signer.sendTransaction(tx);
-                console.log("Transaction sent:", transactionResponse);
-                alert("Transaction sent! Waiting for confirmation...");
-
-                // Wait for the transaction to be mined
-                await transactionResponse.wait();
-                alert("Transaction confirmed!");
-            } catch (error) {
-                console.error("Error sending transaction:", error);
-                alert("Failed to send transaction. See console for details.");
+            } else {
+                console.log("MetaMask is not installed");
+                alert('MetaMask is not installed. Please install it to continue.');
             }
-        } else {
-            console.log("MetaMask is not installed");
-            alert('MetaMask is not installed. Please install it to continue.');
         }
-    }
 
-    // Add event listener to the button
-    document.getElementById('sendButton').addEventListener('click', sendEther);
-</script>
+        // Add event listener to the button
+        document.getElementById('sendButton').addEventListener('click', sendEther);
+    </script>
 </body>
 
 </html>
