@@ -9,6 +9,11 @@
     <title>Image Annotation Tool</title>
     <style>
         /* General reset and styling */
+
+
+
+
+
         * {
             margin: 0;
             padding: 0;
@@ -168,10 +173,39 @@
             background-color: #218838; /* Darker green on hover */
         }
         
+        #balance {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 150px;  /* Fixed width to maintain a compact square */
+            height: 100px; /* Fixed height */
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 16px;  /* Adjust font size */
+            font-weight: bold;
+            text-align: center;
+            overflow-wrap: break-word;  /* Ensures long text wraps within the container */
+            word-wrap: break-word;
+            line-height: 1.2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+          }
+     
+        
     </style>
     
 </head>
 
+<body>
+    <p id="balance">Balance: 0 Sepolia ETH</p>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.6.2/ethers.umd.min.js"></script>
+    <script src="script.js"></script>
+  </body>
 <body>
     <div class="sidebar">
         <h2>Annotation Tool</h2>
@@ -384,8 +418,6 @@
   <script>
   // Check if the trigger is set in localStorage
   function checkTrigger() {
-
-  
       if (localStorage.getItem('pageBTrigger') === 'true') {
           // Enable the button if the trigger is set
           const sendButton = document.getElementById('sendButton');
